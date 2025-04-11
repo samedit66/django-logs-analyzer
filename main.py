@@ -10,4 +10,3 @@ if __name__ == "__main__":
 
     for log in parse_logs(log_lines):
         print(log)
-        

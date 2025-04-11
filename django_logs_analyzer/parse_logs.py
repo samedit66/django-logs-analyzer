@@ -7,6 +7,7 @@ from typing import Iterable
 @dataclass(frozen=True, slots=True)
 class DjangoLog:
     """Data class for Django log entries."""
+
     time: datetime.datetime
     level: str
     source: str
@@ -33,4 +34,3 @@ def parse_logs(lines: Iterable[str]) -> Iterable[DjangoLog]:
             time_str, level, source, message = match.groups()
             time = datetime.datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S,%f")
             yield DjangoLog(time=time, level=level, source=source, message=message)
-            
