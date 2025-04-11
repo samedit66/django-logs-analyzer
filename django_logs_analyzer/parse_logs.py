@@ -6,6 +6,7 @@ from typing import Iterable
 
 @dataclass(frozen=True, slots=True)
 class DjangoLog:
+    """Data class for Django log entries."""
     time: datetime.datetime
     level: str
     source: str
@@ -18,6 +19,14 @@ LOG_PATTERN = re.compile(
 
 
 def parse_logs(lines: Iterable[str]) -> Iterable[DjangoLog]:
+    """Parses Django log lines into DjangoLog objects.
+
+    Args:
+        lines (Iterable[str]): An iterable of log lines.
+
+    Returns:
+        Iterable[DjangoLog]: An iterable of DjangoLog objects.
+    """
     for line in lines:
         match = LOG_PATTERN.match(line)
         if match:
