@@ -29,7 +29,7 @@ def test_filter_requests():
             level="ERROR",
             source="request",
             message="Internal Server Error: /api/v1/checkout/ [192.168.1.90] - ConnectionError: Failed to connect to payment gateway",
-        )
+        ),
     ]
 
     expected_requests = [

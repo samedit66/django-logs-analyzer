@@ -9,7 +9,7 @@ class HandlerStats:
     """Data class for storing statistics about log handlers."""
 
     handler: str
-    debug: int = 0 
+    debug: int = 0
     info: int = 0
     warning: int = 0
     error: int = 0
@@ -20,7 +20,9 @@ class HandlerStats:
         return self.debug + self.info + self.warning + self.error + self.critical
 
 
-def collect_handlers_stats(request_logs: Iterable[RequestLog]) -> Iterable[HandlerStats]:
+def collect_handlers_stats(
+    request_logs: Iterable[RequestLog],
+) -> Iterable[HandlerStats]:
     """Collects statistics about log handlers from request logs."""
     handlers = {}
 

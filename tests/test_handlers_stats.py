@@ -14,8 +14,12 @@ def test_collect_handlers_stats():
     ]
 
     expected_stats = [
-        HandlerStats(handler="/admin/dashboard/", debug=0, info=2, warning=1, error=0, critical=1),
-        HandlerStats(handler="/api/v1/reviews/", debug=1, info=1, warning=0, error=1, critical=0),
+        HandlerStats(
+            handler="/admin/dashboard/", debug=0, info=2, warning=1, error=0, critical=1
+        ),
+        HandlerStats(
+            handler="/api/v1/reviews/", debug=1, info=1, warning=0, error=1, critical=0
+        ),
     ]
 
     actual_stats = collect_handlers_stats(requests)

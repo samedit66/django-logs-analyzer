@@ -26,8 +26,8 @@ def filter_requests(logs: Iterable[DjangoLog]) -> Iterable[RequestLog]:
             for part in log.message.split():
                 if part.startswith("/"):
                     handler = part
-                    break 
-            
+                    break
+
             # Not sure, if this can ever happen, but just in case.
             if handler is None:
                 continue

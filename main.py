@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     if files := find_nonexistent_files(args.files):
         parser.error(f"File(s) not found: {', '.join(files)}")
-    
+
     match args.report:
         case "handlers":
             print(handlers_report(args.files))
