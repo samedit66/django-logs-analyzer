@@ -42,3 +42,22 @@ HANDLER                        DEBUG      INFO       WARNING    ERROR      CRITI
 /api/v1/support/               0          17         0          3          0
 /api/v1/users/                 0          10         0          4          0
 ```
+
+## Добавление новых видов отчетов
+
+Архитектура приложения четко разделяет этап парсинга логов (все что внутри parse_logs.py) и этап формирования отчетов (reports.py, filter_requests.py).
+Это разделение позволяет предельно просто расширять возможный набор отчетов: любой новый тип отчёта, например, отчёт по безопасности, можно реализовать путем анализа атрибутов объекта DjangoLog (например, найти все отчеты связанный с безопастностью: `source == "security"`), а затем агрегировать и форматировать результаты. Допустим, нам необходимо определить количество логов, связанных с безопастностью (`django.sercurity`). Тогда, все что нам нужно сделать, это в файле `reports.py` создать новую функцию:
+```python
+def security_report(files: list[str]) -> str:
+    logs = parse_logs_files(files)
+    security_logs = [log for log in logs if log.source == "security"]
+    return f"Security logs count: {len(logs}"
+```
+После чего импортировать её в `main.py` и добавить обработку нового отчета:
+```python
+match args.report:
+    case "handlers":
+        print(handlers_report(args.files))
+    case "security":
+        print(security_report(args.files))
+```
