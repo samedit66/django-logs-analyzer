@@ -27,8 +27,8 @@ def test_filter_requests():
     ]
 
     expected_requests = [
-        RequestLog(level="INFO", handler="GET"),
-        RequestLog(level="INFO", handler="GET"),
+        RequestLog(level="INFO", handler="/api/v1/reviews/"),
+        RequestLog(level="INFO", handler="/admin/dashboard/"),
     ]
 
     filtered_requests = list(filter_requests(logs))

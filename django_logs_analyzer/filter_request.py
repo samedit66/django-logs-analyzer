@@ -21,5 +21,15 @@ def filter_requests(logs: Iterable[DjangoLog]) -> Iterable[RequestLog]:
     """
     for log in logs:
         if log.source == "request":
-            handler, _ = log.message.split(" ", 1)
+            # We assume that the handler starts with "/".
+            handler = None
+            for part in log.message.split():
+                if part.startswith("/"):
+                    handler = part
+                    break 
+            
+            # Not sure, if this can ever happen, but just in case.
+            if handler is None:
+                continue
+
             yield RequestLog(level=log.level, handler=handler)
