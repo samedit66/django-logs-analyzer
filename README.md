@@ -21,7 +21,7 @@
 Рассмотрим пример формирования отчёта с именем `handlers` для нескольких файлов логов из папки logs в этом репозитории:
 
 ```bash
-python3 main.py logs/app1.log logs/app2.log logs/app3.log --report handlers
+python3 main.py logs/app1.txt logs/app2.txt logs/app3.txt --report handlers
 ```
 
 Пример вывода:
