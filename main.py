@@ -24,7 +24,7 @@ def argument_parser() -> ArgumentParser:
     return parser
 
 
-def find_nonexistent_files(files: list[str]) -> Iterable[str]:
+def find_nonexistent_files(files: list[str]) -> list[str]:
     return [file for file in files if not Path(file).exists()]
 
 
