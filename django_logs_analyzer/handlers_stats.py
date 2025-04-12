@@ -40,4 +40,4 @@ def collect_handlers_stats(request_logs: Iterable[RequestLog]) -> Iterable[Handl
             case "CRITICAL":
                 handlers[log.handler].critical += 1
 
-    return handlers.values()
+    return sorted(handlers.values(), key=lambda hs: hs.handler)

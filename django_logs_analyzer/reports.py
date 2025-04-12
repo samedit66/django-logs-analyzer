@@ -53,7 +53,7 @@ def _handlers_statistics_table(handlers_stats: Iterable[HandlerStats]) -> str:
 
     lines.append(f"{'HANDLER':<30} {'DEBUG':<10} {'INFO':<10} {'WARNING':<10} {'ERROR':<10} {'CRITICAL':<10}")
 
-    for handler_stats in sorted(handlers_stats, key=lambda hs: hs.handler):
+    for handler_stats in handlers_stats:
         lines.append(f"{handler_stats.handler:<30} "
                      f"{handler_stats.debug:<10} "
                      f"{handler_stats.info:<10} "
