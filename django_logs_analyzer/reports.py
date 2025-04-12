@@ -1,9 +1,43 @@
 from typing import Iterable
+from itertools import chain
+from multiprocessing import Pool
 
+from django_logs_analyzer.parse_logs import parse_logs
+from django_logs_analyzer.filter_request import filter_requests, RequestLog
+from django_logs_analyzer.handlers_stats import collect_handlers_stats
 from django_logs_analyzer.handlers_stats import HandlerStats
 
 
-def handlers_statistics_table(handlers_stats: Iterable[HandlerStats]) -> str:
+def handlers_report(files: Iterable[str]) -> str:
+    """Generates a report of handler statistics from log files.
+    
+    Args:
+        files (Iterable[str]): An iterable of file paths to log files.
+        
+    Returns:
+        str: A formatted string representing the handler statistics report."""
+    with Pool() as pool:
+        requests = pool.map(
+            _filter_requests_wrapper,
+            files,
+        )
+
+        table = _handlers_statistics_table(
+            collect_handlers_stats(chain.from_iterable(requests))
+        )
+
+        return table
+
+
+def _filter_requests_wrapper(file: str) -> Iterable[RequestLog]:
+    return list(
+        filter_requests(
+            parse_logs(open(file, "r", encoding="utf8").readlines())
+        )
+    )
+
+
+def _handlers_statistics_table(handlers_stats: Iterable[HandlerStats]) -> str:
     """Generates a statistics table from the collected handler statistics.
     
     Args:
