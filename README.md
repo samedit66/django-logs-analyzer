@@ -51,7 +51,7 @@ HANDLER                        DEBUG      INFO       WARNING    ERROR      CRITI
 def security_report(files: list[str]) -> str:
     logs = parse_logs_files(files)
     security_logs = [log for log in logs if log.source == "security"]
-    return f"Security logs count: {len(logs}"
+    return f"Security logs count: {len(logs)}"
 ```
 После чего импортировать её в `main.py` и добавить обработку нового отчета:
 ```python
