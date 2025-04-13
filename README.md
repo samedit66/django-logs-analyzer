@@ -26,21 +26,21 @@ python3 main.py logs/app1.txt logs/app2.txt logs/app3.txt --report handlers
 
 Пример вывода:
 ```
-Total requests: 184
+Total requests: 188
 
 HANDLER                        DEBUG      INFO       WARNING    ERROR      CRITICAL
-/admin/dashboard/              0          14         0          4          0
-/admin/login/                  0          11         0          3          0
-/api/v1/auth/login/            0          10         0          1          0
-/api/v1/cart/                  0          5          0          0          0
-/api/v1/checkout/              0          16         0          3          0
+/admin/dashboard/              0          13         0          4          0
+/admin/login/                  0          12         0          4          0
+/api/v1/auth/login/            0          12         0          2          0
+/api/v1/cart/                  0          9          0          1          0
+/api/v1/checkout/              0          15         0          4          0
 /api/v1/orders/                0          10         0          4          0
-/api/v1/payments/              0          13         0          3          0
-/api/v1/products/              0          13         0          6          0
-/api/v1/reviews/               0          21         0          2          0
+/api/v1/payments/              0          12         0          2          0
+/api/v1/products/              0          12         0          5          0
+/api/v1/reviews/               0          20         0          4          0
 /api/v1/shipping/              0          8          0          3          0
-/api/v1/support/               0          17         0          3          0
-/api/v1/users/                 0          10         0          4          0
+/api/v1/support/               0          16         0          4          0
+/api/v1/users/                 0          9          0          3          0
 ```
 
 ## Добавление новых видов отчетов
